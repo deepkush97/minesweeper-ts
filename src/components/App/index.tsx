@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Cell, CellState, Faces } from "../../types";
-import { generateCells } from "../../utils";
+import { Cell, CellState, CellValues, Faces } from "../../types";
+import { generateCells, openMultipleCells } from "../../utils";
 import Button from "../Button";
 import NumberDisplay from "../NumberDisplay";
 import "./App.scss";
@@ -41,7 +41,26 @@ const App: React.FC = () => {
   }, [live, time]);
 
   const handleCellClick = (rowParam: number, colParam: number) => (): void => {
-    if (!live) setLive(true);
+    if (!live) {
+      //TODO: Make sure not to click the bomb at the beginning
+      setLive(true);
+    }
+
+    const currentCell = cells[rowParam][colParam];
+
+    if (currentCell.state !== CellState.open) return;
+
+    let newCells = cells.slice();
+
+    if (currentCell.value === CellValues.bomb) {
+      //TODO: Take care of the bomb click events
+    } else if (currentCell.value === CellValues.none) {
+      newCells = openMultipleCells(newCells, rowParam, colParam);
+      setCells(newCells);
+    } else {
+      newCells[rowParam][colParam].state = CellState.visible;
+      setCells(newCells);
+    }
   };
   const handleCellContext = (rowParam: number, colParam: number) => (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>

@@ -25,3 +25,14 @@ export enum Faces {
   lost = "😵",
   win = "🥳",
 }
+
+export type AdjacentCells = {
+  topLeftCell: Cell | null;
+  topCell: Cell | null;
+  topRightCell: Cell | null;
+  rightCell: Cell | null;
+  bottomRightCell: Cell | null;
+  bottomCell: Cell | null;
+  bottomLeftCell: Cell | null;
+  leftCell: Cell | null;
+};
