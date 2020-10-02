@@ -1,4 +1,3 @@
-import { getAllByAltText } from "@testing-library/react";
 import { MAX_COLUMNS, MAX_ROWS, NO_OF_BOMBS } from "../constants";
 import { CellValues, CellState, Cell, AdjacentCells } from "../types";
 
@@ -42,7 +41,6 @@ const grabAllAdjacentCells = (
 
 export const generateCells = (): Cell[][] => {
   let cells: Cell[][] = [];
-
   for (let row = 0; row < MAX_ROWS; row++) {
     cells.push([]);
     for (let col = 0; col < MAX_COLUMNS; col++) {
@@ -52,7 +50,6 @@ export const generateCells = (): Cell[][] => {
       });
     }
   }
-
   let bombsPlaced = 0;
   while (bombsPlaced < NO_OF_BOMBS) {
     const randomRow = Math.floor(Math.random() * MAX_ROWS);
@@ -109,7 +106,6 @@ export const generateCells = (): Cell[][] => {
       }
     }
   }
-
   return cells;
 };
 
