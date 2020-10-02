@@ -1,4 +1,4 @@
-export enum CallValues {
+export enum CellValues {
   none,
   one,
   two,
@@ -17,4 +17,4 @@ export enum CellState {
   flagged,
 }
 
-export type Cell = { value: CallValues; state: CellState };
+export type Cell = { value: CellValues; state: CellState };
